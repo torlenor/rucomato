@@ -34,32 +34,19 @@ impl Rule110 {
     }
 
     fn apply_rule110(row: &Row) -> Row {
-        // TODO: Refactor
         let cols = row.len();
         let mut new_row = Row { cells: Vec::new() };
-        let mut byte: u8 = 0b0000_0000;
-        if row.cells[cols - 1].value {
-            byte |= 0b0000_0100;
-        }
-        if row.cells[0].value {
-            byte |= 0b0000_0010;
-        }
-        if row.cells[1].value {
-            byte |= 0b0000_0001;
-        }
-        match Rule110::determine_new_value(&byte) {
-            Ok(v) => new_row.cells.push(Cell { value: v }),
-            Err(e) => panic!("Could not determine new value for byte {}: {}", e, byte),
-        }
-        for c in 1..=(cols - 2) {
+        for c in 0..(cols) {
+            let l_neib = ((c as i32)-1).rem_euclid(cols as i32) as usize;
+            let r_neib = (c+1) % cols;
             let mut byte: u8 = 0b0000_0000;
-            if row.cells[c - 1].value {
+            if row.cells[l_neib].value {
                 byte |= 0b0000_0100;
             }
             if row.cells[c].value {
                 byte |= 0b0000_0010;
             }
-            if row.cells[c + 1].value {
+            if row.cells[r_neib].value {
                 byte |= 0b0000_0001;
             }
             let new_cell_value = Rule110::determine_new_value(&byte);
@@ -67,21 +54,6 @@ impl Rule110 {
                 Ok(v) => new_row.cells.push(Cell { value: v }),
                 Err(e) => println!("Could not determine new value for byte {}: {}", e, byte),
             }
-        }
-        byte = 0b0000_0000;
-        if row.cells[cols - 2].value {
-            byte |= 0b0000_0100;
-        }
-        if row.cells[cols - 1].value {
-            byte |= 0b0000_0010;
-        }
-        if row.cells[0].value {
-            byte |= 0b0000_0001;
-        }
-        let new_cell_value = Rule110::determine_new_value(&byte);
-        match new_cell_value {
-            Ok(v) => new_row.cells.push(Cell { value: v }),
-            Err(e) => panic!("Could not determine new value for byte {}: {}", e, byte),
         }
         new_row
     }
