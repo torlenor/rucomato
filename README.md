@@ -4,7 +4,7 @@
 
 ## Description
 
-A implementation of different [cellular automata](https://en.wikipedia.org/wiki/Cellular_automaton) in Rust.
+An implementation of different [cellular automata](https://en.wikipedia.org/wiki/Cellular_automaton) in Rust.
 
 ## Requirements
 
