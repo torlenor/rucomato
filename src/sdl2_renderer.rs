@@ -7,6 +7,7 @@ use sdl2::pixels::Color;
 use crate::grid::Grid;
 use crate::renderer::Renderer;
 use crate::row::Row;
+use crate::events;
 
 #[allow(dead_code)]
 const WHITE: sdl2::pixels::Color = Color::RGB(255, 255, 255);
@@ -101,18 +102,26 @@ impl Renderer for Sdl2Renderer {
             }
         }
     }
-    fn begin_render(&mut self) -> bool {
+    fn get_events(&mut self) -> Vec<events::Event>
+    {
+        let mut events : Vec<events::Event> = Vec::new();
         for event in self.event_pump.poll_iter() {
             match event {
                 Event::Quit { .. }
                 | Event::KeyDown {
                     keycode: Some(Keycode::Escape),
                     ..
-                } => return true,
-                // _ => {println!("{:?}", event);}
+                } => events.push(events::Event::QUIT),
+                Event::KeyDown {
+                    keycode: Some(Keycode::P),
+                    ..
+                } => events.push(events::Event::PAUSE),
                 _ => {}
             }
         }
+        events
+    }
+    fn begin_render(&mut self) -> bool {
         self.canvas.set_draw_color(BLACK);
         self.canvas.clear();
         false

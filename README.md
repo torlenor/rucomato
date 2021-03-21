@@ -44,7 +44,7 @@ cargo run -- gol sdl2
 
 ### General
 
-- [ ] Pause function
+- [x] Pause function
 - [ ] Mouse interaction for SDL2 to place/influence cells
 - [ ] Move into the third dimension
 - [ ] Sound synthesis

@@ -4,6 +4,9 @@ use renderer::Renderer;
 mod automaton;
 use automaton::Automaton;
 
+mod events;
+use events::Event;
+
 mod console_renderer;
 use console_renderer::ConsoleRenderer;
 
@@ -84,14 +87,23 @@ pub fn main() -> Result<(), String> {
         _ => panic!("Unknown output type {} selected.", output_select),
     }
 
-    loop {
+    let mut quit = false;
+    let mut pause = false;
+    while !quit {
         let now = time::Instant::now();
-        if renderer.begin_render() {
-            break;
+        for event in renderer.get_events().iter() {
+            match event {
+                Event::QUIT => quit = true,
+                Event::PAUSE => pause = !pause,
+                _ => {}
+            }
         }
-        automaton.render(&mut *renderer);
-        renderer.end_render();
-        automaton.next();
+        if !pause {
+            renderer.begin_render();
+            automaton.render(&mut *renderer);
+            renderer.end_render();
+            automaton.next();
+        }
         let elapsed = now.elapsed().as_millis() as u64;
         if output_select != "console" {
             println!("Iteration time: {} ms", elapsed);

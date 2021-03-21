@@ -1,6 +1,7 @@
 use crate::grid::Grid;
 use crate::renderer::Renderer;
 use crate::row::Row;
+use crate::events::Event;
 pub struct ConsoleRenderer {
     grid: bool,
 }
@@ -17,6 +18,10 @@ impl Renderer for ConsoleRenderer {
     }
     fn render_grid(&mut self, grid: &Grid) {
         print!("{}", grid);
+    }
+    fn get_events(&mut self) -> Vec<Event>
+    {
+        Vec::new()
     }
     fn begin_render(&mut self) -> bool {
         if self.grid {
