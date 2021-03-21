@@ -70,17 +70,15 @@ impl Renderer for Sdl2Renderer {
             for cell in row.1.cells.iter().enumerate() {
                 if cell.1.value {
                     self.canvas.set_draw_color(ORANGE);
-                } else {
-                    self.canvas.set_draw_color(BLACK);
-                }
-                match self.canvas.fill_rect(sdl2::rect::Rect::new(
-                    (self.cell_width as i32) * (cell.0 as i32),
-                    (self.cell_height as i32) * (row.0 as i32),
-                    self.cell_width,
-                    self.cell_height,
-                )) {
-                    Err(e) => panic!("Error rendering rect: {}", e),
-                    _ => {}
+                    match self.canvas.fill_rect(sdl2::rect::Rect::new(
+                        (self.cell_width as i32) * (cell.0 as i32),
+                        (self.cell_height as i32) * (row.0 as i32),
+                        self.cell_width,
+                        self.cell_height,
+                    )) {
+                        Err(e) => panic!("Error rendering rect: {}", e),
+                        _ => {}
+                    }
                 }
             }
         }
@@ -90,17 +88,15 @@ impl Renderer for Sdl2Renderer {
             for cell in row.1.cells.iter().enumerate() {
                 if cell.1.value {
                     self.canvas.set_draw_color(ORANGE);
-                } else {
-                    self.canvas.set_draw_color(BLACK);
-                }
-                match self.canvas.fill_rect(sdl2::rect::Rect::new(
-                    (self.cell_width as i32) * (cell.0 as i32),
-                    (self.cell_height as i32) * (row.0 as i32),
-                    self.cell_width,
-                    self.cell_height,
-                )) {
-                    Err(e) => panic!("Error rendering rect: {}", e),
-                    _ => {}
+                    match self.canvas.fill_rect(sdl2::rect::Rect::new(
+                        (self.cell_width as i32) * (cell.0 as i32),
+                        (self.cell_height as i32) * (row.0 as i32),
+                        self.cell_width,
+                        self.cell_height,
+                    )) {
+                        Err(e) => panic!("Error rendering rect: {}", e),
+                        _ => {}
+                    }
                 }
             }
         }
