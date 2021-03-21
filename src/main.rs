@@ -16,6 +16,9 @@ use rule110::Rule110;
 mod rule30;
 use rule30::Rule30;
 
+mod rule90;
+use rule90::Rule90;
+
 mod gol;
 use gol::Gol;
 
@@ -58,6 +61,7 @@ pub fn main() -> Result<(), String> {
     match automaton_select.as_str() {
         "rule110" => automaton = Box::new(Rule110::new(COLS)),
         "rule30" => automaton = Box::new(Rule30::new(COLS)),
+        "rule90" => automaton = Box::new(Rule90::new(COLS)),
         "gol" => {
             automaton = Box::new(Gol::new(ROWS, COLS));
             grid = true;
