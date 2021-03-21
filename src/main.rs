@@ -13,6 +13,9 @@ use sdl2_renderer::Sdl2Renderer;
 mod rule110;
 use rule110::Rule110;
 
+mod rule30;
+use rule30::Rule30;
+
 mod gol;
 use gol::Gol;
 
@@ -54,6 +57,7 @@ pub fn main() -> Result<(), String> {
     let mut grid = false;
     match automaton_select.as_str() {
         "rule110" => automaton = Box::new(Rule110::new(COLS)),
+        "rule30" => automaton = Box::new(Rule30::new(COLS)),
         "gol" => {
             automaton = Box::new(Gol::new(ROWS, COLS));
             grid = true;
