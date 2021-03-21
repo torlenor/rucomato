@@ -1,3 +1,5 @@
+[![Build Status](https://github.com/torlenor/rucomato/workflows/CI/badge.svg)](https://github.com/torlenor/rucomato/actions)
+
 # Rucomato
 
 A implementation of different [cellular automata](https://en.wikipedia.org/wiki/Cellular_automaton) in Rust.
