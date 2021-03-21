@@ -14,7 +14,40 @@ A implementation of different [cellular automata](https://en.wikipedia.org/wiki/
   sudo apt install libsdl2-dev libsdl2-gfx-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
   ```
 
+## Basic functionality
+
+- Press "p" to pause the simulation.
+- Press "ESC" to quit the simulation.
+
 ## Implemented automata
+
+### [Rule 30](https://en.wikipedia.org/wiki/Rule_30)
+
+On console:
+```console
+cargo run -- rule30 console
+```
+
+In SDL2 window:
+```console
+cargo run -- rule30 sdl2
+```
+
+![rule30](./examples/rule30.png)
+
+### [Rule 90](https://en.wikipedia.org/wiki/Rule_90)
+
+On console:
+```console
+cargo run -- rule90 console
+```
+
+In SDL2 window:
+```console
+cargo run -- rule90 sdl2
+```
+
+![rule90](./examples/rule90.png)
 
 ### [Rule 110](https://en.wikipedia.org/wiki/Rule_110)
 
@@ -28,6 +61,22 @@ In SDL2 window:
 cargo run -- rule110 sdl2
 ```
 
+![rule110](./examples/rule110.png)
+
+### [Rule 184](https://en.wikipedia.org/wiki/Rule_184)
+
+On console:
+```console
+cargo run -- rule184 console
+```
+
+In SDL2 window:
+```console
+cargo run -- rule184 sdl2
+```
+
+![rule184](./examples/rule184.png)
+
 ### [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
 On console:
@@ -40,11 +89,12 @@ In SDL2 window:
 cargo run -- gol sdl2
 ```
 
+![gol](./examples/gol.png)
+
 ## TODO:
 
 ### General
 
-- [x] Pause function
 - [ ] Mouse interaction for SDL2 to place/influence cells
 - [ ] Move into the third dimension
 - [ ] Sound synthesis
@@ -53,9 +103,6 @@ cargo run -- gol sdl2
 
 Possible other interesting automata to implement in no particular order:
 
-- [x] [Rule 30](https://en.wikipedia.org/wiki/Rule_30)
-- [x] [Rule 90](https://en.wikipedia.org/wiki/Rule_90)
-- [x] [Rule 184](https://en.wikipedia.org/wiki/Rule_184)
 - [ ] [Ising model](https://en.wikipedia.org/wiki/Ising_model)
 - [ ] [Lattice gas automaton](https://en.wikipedia.org/wiki/Lattice_gas_automaton)
 - [ ] [Seeds](https://en.wikipedia.org/wiki/Seeds_(cellular_automaton))
