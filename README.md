@@ -55,7 +55,7 @@ Possible other interesting automata to implement in no particular order:
 
 - [x] [Rule 30](https://en.wikipedia.org/wiki/Rule_30)
 - [x] [Rule 90](https://en.wikipedia.org/wiki/Rule_90)
-- [ ] [Rule 184](https://en.wikipedia.org/wiki/Rule_184)
+- [x] [Rule 184](https://en.wikipedia.org/wiki/Rule_184)
 - [ ] [Ising model](https://en.wikipedia.org/wiki/Ising_model)
 - [ ] [Lattice gas automaton](https://en.wikipedia.org/wiki/Lattice_gas_automaton)
 - [ ] [Seeds](https://en.wikipedia.org/wiki/Seeds_(cellular_automaton))

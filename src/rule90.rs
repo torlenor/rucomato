@@ -1,5 +1,3 @@
-use rand::Rng;
-
 use crate::row::Row;
 use crate::cell::Cell;
 
