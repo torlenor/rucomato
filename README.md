@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/torlenor/rucomato/workflows/CI/badge.svg)](https://github.com/torlenor/rucomato/actions)
+[![Build status](https://github.com/torlenor/rucomato/actions/workflows/rust.yml/badge.svg)](https://github.com/torlenor/rucomato/actions/workflows/rust.yml)
 
 # Rucomato
 
