@@ -23,6 +23,8 @@ mod rule184;
 use rule184::Rule184;
 mod gol;
 use gol::Gol;
+mod seeds;
+use seeds::Seeds;
 
 mod cell;
 mod grid;
@@ -69,6 +71,10 @@ pub fn main() -> Result<(), String> {
             automaton = Box::new(Gol::new(ROWS, COLS));
             grid = true;
         }
+        "seeds" => {
+            automaton = Box::new(Seeds::new(ROWS, COLS));
+            grid = true;
+        }
         _ => panic!("Unknown automaton {} selected.", automaton_select),
     }
 
@@ -87,8 +93,13 @@ pub fn main() -> Result<(), String> {
         _ => panic!("Unknown output type {} selected.", output_select),
     }
 
+    renderer.begin_render();
+    automaton.render(&mut *renderer);
+    renderer.end_render();
+
     let mut quit = false;
     let mut pause = false;
+
     while !quit {
         let now = time::Instant::now();
         for event in renderer.get_events().iter() {

@@ -91,6 +91,20 @@ cargo run -- gol sdl2
 
 ![gol](./examples/gol.png)
 
+### [Seeds](https://en.wikipedia.org/wiki/Seeds_(cellular_automaton))
+
+On console:
+```console
+cargo run -- seeds console
+```
+
+In SDL2 window:
+```console
+cargo run -- seeds sdl2
+```
+
+![seeds](./examples/seeds.png)
+
 ## TODO:
 
 ### General
@@ -98,6 +112,7 @@ cargo run -- gol sdl2
 - [ ] Mouse interaction for SDL2 to place/influence cells
 - [ ] Move into the third dimension
 - [ ] Sound synthesis
+- [ ] Custom actions to control the automata (probably useful in Ising model for temperature control)
 
 ### Possible additional automata
 
@@ -105,7 +120,6 @@ Possible other interesting automata to implement in no particular order:
 
 - [ ] [Ising model](https://en.wikipedia.org/wiki/Ising_model)
 - [ ] [Lattice gas automaton](https://en.wikipedia.org/wiki/Lattice_gas_automaton)
-- [ ] [Seeds](https://en.wikipedia.org/wiki/Seeds_(cellular_automaton))
 - [ ] [Brian's_Brain](https://en.wikipedia.org/wiki/Brian%27s_Brain)
 - [ ] [Von Neumann cellular automaton](https://en.wikipedia.org/wiki/Von_Neumann_cellular_automaton)
 - [ ] [Codd's cellular automaton](https://en.wikipedia.org/wiki/Codd%27s_cellular_automaton)
