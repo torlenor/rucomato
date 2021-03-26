@@ -18,7 +18,7 @@ impl Lant {
     pub fn new(n_rows: usize, n_cols: usize) -> Lant {
         let rows = vec![
             Row {
-                cells: vec![Cell { value: false }; n_cols]
+                cells: vec![Cell { value: 0 }; n_cols]
             };
             n_rows
         ];
@@ -35,7 +35,7 @@ impl Lant {
     fn next_iteration(&mut self) {
         let current_cell_value =
             &mut self.grid.rows[self.current_position_y].cells[self.current_position_x].value;
-        if *current_cell_value {
+        if *current_cell_value != 0{
             self.current_direction += 1;
         } else {
             self.current_direction -= 1;

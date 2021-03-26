@@ -15,20 +15,25 @@ impl Rule110 {
         let mut rng = rand::thread_rng();
         let mut row = Row { cells: Vec::new() };
         for _ in 1..=cols {
-            row.cells.push(Cell { value: rng.gen() });
+            let b: bool = rng.gen();
+            if b {
+                row.cells.push(Cell { value: 1 });
+            } else {
+                row.cells.push(Cell { value: 0 });
+            }
         }
         Rule110 { current_row: row}
     }
-    fn determine_new_value(byte: &u8) -> Result<bool, &'static str> {
+    fn determine_new_value(byte: &u8) -> Result<i32, &'static str> {
         match byte {
-            0b111 => Ok(false),
-            0b110 => Ok(true),
-            0b101 => Ok(true),
-            0b100 => Ok(false),
-            0b011 => Ok(true),
-            0b010 => Ok(true),
-            0b001 => Ok(true),
-            0b000 => Ok(false),
+            0b111 => Ok(0),
+            0b110 => Ok(1),
+            0b101 => Ok(1),
+            0b100 => Ok(0),
+            0b011 => Ok(1),
+            0b010 => Ok(1),
+            0b001 => Ok(1),
+            0b000 => Ok(0),
             _ => Err("Unhandled case"),
         }
     }
@@ -40,13 +45,13 @@ impl Rule110 {
             let l_neib = ((c as i32)-1).rem_euclid(cols as i32) as usize;
             let r_neib = (c+1) % cols;
             let mut byte: u8 = 0b0000_0000;
-            if row.cells[l_neib].value {
+            if row.cells[l_neib].value != 0 {
                 byte |= 0b0000_0100;
             }
-            if row.cells[c].value {
+            if row.cells[c].value != 0 {
                 byte |= 0b0000_0010;
             }
-            if row.cells[r_neib].value {
+            if row.cells[r_neib].value != 0 {
                 byte |= 0b0000_0001;
             }
             let new_cell_value = Rule110::determine_new_value(&byte);
