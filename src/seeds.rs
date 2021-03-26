@@ -63,14 +63,14 @@ impl Seeds {
                 let mut living_neighbours = 0;
                 for dir in 0..=7 {
                     let (x, y) = grid.neib(col.0, row.0, dir).unwrap();
-                    if grid.rows[y].cells[x].value != 0 {
+                    if grid.rows[y].cells[x].value == 1 {
                         living_neighbours += 1;
                     }
                 }
                 let is_alive = col.1.value;
                 match living_neighbours {
                     0..=1 => new_row.cells.push(Cell { value: 0 }),
-                    2 => new_row.cells.push(Cell { value: !is_alive }),
+                    2 => new_row.cells.push(Cell { value: (is_alive + 1) % 2 }),
                     3..=8 => new_row.cells.push(Cell { value: 0 }),
                     _ => {}
                 }
