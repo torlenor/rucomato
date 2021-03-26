@@ -105,6 +105,21 @@ cargo run -- seeds sdl2
 
 ![seeds](./examples/seeds.png)
 
+### [Langton's ant](https://en.wikipedia.org/wiki/Langton%27s_ant)
+
+On console:
+```console
+cargo run -- lant console
+```
+
+In SDL2 window:
+```console
+cargo run -- lant sdl2
+```
+
+![Langton's ant](./examples/langtons_ant.png)
+
+
 ## TODO:
 
 ### General
@@ -125,6 +140,5 @@ Possible other interesting automata to implement in no particular order:
 - [ ] [Codd's cellular automaton](https://en.wikipedia.org/wiki/Codd%27s_cellular_automaton)
 - [ ] [CoDi](https://en.wikipedia.org/wiki/CoDi)
 - [ ] [Langton's loops](https://en.wikipedia.org/wiki/Langton%27s_loops)
-- [ ] [Langton's ant](https://en.wikipedia.org/wiki/Langton%27s_ant)
 - [ ] [Nobili cellular automata](https://en.wikipedia.org/wiki/Nobili_cellular_automata)
 - [ ] [Wireworld](https://en.wikipedia.org/wiki/Wireworld)

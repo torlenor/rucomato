@@ -25,6 +25,8 @@ mod gol;
 use gol::Gol;
 mod seeds;
 use seeds::Seeds;
+mod lant;
+use lant::Lant;
 
 mod cell;
 mod grid;
@@ -34,7 +36,7 @@ use std::{thread, time};
 
 use std::env;
 
-const CYCLE_TIME_MS: u64 = 100;
+const CYCLE_TIME_MS: u64 = 10;
 
 const COLS: usize = 100;
 const ROWS: usize = 100;
@@ -73,6 +75,10 @@ pub fn main() -> Result<(), String> {
         }
         "seeds" => {
             automaton = Box::new(Seeds::new(ROWS, COLS));
+            grid = true;
+        }
+        "lant" => {
+            automaton = Box::new(Lant::new(ROWS, COLS));
             grid = true;
         }
         _ => panic!("Unknown automaton {} selected.", automaton_select),
