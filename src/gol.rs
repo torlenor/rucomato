@@ -1,8 +1,8 @@
 use rand::Rng;
 
 use crate::cell::Cell;
-use crate::row::Row;
 use crate::grid::Grid;
+use crate::row::Row;
 
 use crate::automaton::Automaton;
 use crate::renderer::Renderer;
@@ -13,7 +13,12 @@ pub struct Gol {
 
 impl Gol {
     pub fn new(n_rows: usize, n_cols: usize) -> Gol {
-        let mut rows = vec![Row { cells: vec![Cell{value: false}; n_cols] }; n_rows];
+        let mut rows = vec![
+            Row {
+                cells: vec![Cell { value: 0 }; n_cols]
+            };
+            n_rows
+        ];
         // Blinker
         // rows[4].cells[4].value = true;
         // rows[4].cells[5].value = true;
@@ -28,10 +33,17 @@ impl Gol {
         let mut rng = rand::thread_rng();
         for row in rows.iter_mut() {
             for col in row.cells.iter_mut() {
-                col.value = rng.gen();
+                let bool: bool = rng.gen();
+                if bool {
+                    col.value = 1;
+                } else {
+                    col.value = 0;
+                }
             }
         }
-        Gol { grid: Grid{rows} }
+        Gol {
+            grid: Grid { rows },
+        }
     }
 
     fn next_iteration(grid: &Grid) -> Grid {
@@ -46,22 +58,22 @@ impl Gol {
                 let mut living_neighbours = 0;
                 for dir in 0..=7 {
                     let (x, y) = grid.neib(col.0, row.0, dir).unwrap();
-                    if grid.rows[y].cells[x].value {
+                    if grid.rows[y].cells[x].value != 0 {
                         living_neighbours += 1;
                     }
                 }
                 let is_alive = col.1.value;
                 match living_neighbours {
-                    0..=1 => new_row.cells.push(Cell{value: false}), 
-                    2 => new_row.cells.push(Cell{value: is_alive}), 
-                    3 => new_row.cells.push(Cell{value: true}), 
-                    4..=8 => new_row.cells.push(Cell{value: false}),
-                    _ => {},
+                    0..=1 => new_row.cells.push(Cell { value: 0 }),
+                    2 => new_row.cells.push(Cell { value: is_alive }),
+                    3 => new_row.cells.push(Cell { value: 1 }),
+                    4..=8 => new_row.cells.push(Cell { value: 0 }),
+                    _ => {}
                 }
             }
             new_rows.push(new_row);
         }
-        Grid{rows: new_rows}
+        Grid { rows: new_rows }
     }
 }
 

@@ -69,7 +69,7 @@ impl Renderer for Sdl2Renderer {
         }
         for row in self.previous_rows.iter().enumerate() {
             for cell in row.1.cells.iter().enumerate() {
-                if cell.1.value {
+                if cell.1.value != 0 {
                     self.canvas.set_draw_color(ORANGE);
                     match self.canvas.fill_rect(sdl2::rect::Rect::new(
                         (self.cell_width as i32) * (cell.0 as i32),
@@ -87,7 +87,7 @@ impl Renderer for Sdl2Renderer {
     fn render_grid(&mut self, grid: &Grid) {
         for row in grid.rows.iter().enumerate() {
             for cell in row.1.cells.iter().enumerate() {
-                if cell.1.value {
+                if cell.1.value != 0 {
                     self.canvas.set_draw_color(ORANGE);
                     match self.canvas.fill_rect(sdl2::rect::Rect::new(
                         (self.cell_width as i32) * (cell.0 as i32),
