@@ -119,11 +119,24 @@ cargo run -- lant sdl2
 
 ![Langton's ant](./examples/langtons_ant.png)
 
+### [Brian's_Brain](https://en.wikipedia.org/wiki/Brian%27s_Brain)
+
+On console:
+```console
+cargo run -- bb console
+```
+
+In SDL2 window:
+```console
+cargo run -- bb sdl2
+```
+
+![Brian's Brain](./examples/brians_brain.png)
+
 ## TODO:
 
 ### General
 
-- [ ] More than two states that map to different colors/symbols
 - [ ] Mouse interaction for SDL2 to place/influence cells
 - [ ] Move into the third dimension
 - [ ] Sound synthesis
@@ -135,7 +148,6 @@ Possible other interesting automata to implement in no particular order:
 
 - [ ] [Ising model](https://en.wikipedia.org/wiki/Ising_model)
 - [ ] [Lattice gas automaton](https://en.wikipedia.org/wiki/Lattice_gas_automaton)
-- [ ] [Brian's_Brain](https://en.wikipedia.org/wiki/Brian%27s_Brain)
 - [ ] [Von Neumann cellular automaton](https://en.wikipedia.org/wiki/Von_Neumann_cellular_automaton)
 - [ ] [Codd's cellular automaton](https://en.wikipedia.org/wiki/Codd%27s_cellular_automaton)
 - [ ] [CoDi](https://en.wikipedia.org/wiki/CoDi)

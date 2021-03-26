@@ -12,7 +12,7 @@ use crate::events;
 #[allow(dead_code)]
 const WHITE: sdl2::pixels::Color = Color::RGB(255, 255, 255);
 const BLACK: sdl2::pixels::Color = Color::RGB(0, 0, 0);
-const RED: sdl2::pixels::Color = Color::RGB(128, 255, 128);
+const RED: sdl2::pixels::Color = Color::RGB(255, 128, 128);
 const ORANGE: sdl2::pixels::Color = Color::RGB(253, 166, 47);
 
 pub struct Sdl2Renderer {
@@ -69,8 +69,19 @@ impl Renderer for Sdl2Renderer {
         }
         for row in self.previous_rows.iter().enumerate() {
             for cell in row.1.cells.iter().enumerate() {
-                if cell.1.value != 0 {
+                if cell.1.value == 1 {
                     self.canvas.set_draw_color(ORANGE);
+                    match self.canvas.fill_rect(sdl2::rect::Rect::new(
+                        (self.cell_width as i32) * (cell.0 as i32),
+                        (self.cell_height as i32) * (row.0 as i32),
+                        self.cell_width,
+                        self.cell_height,
+                    )) {
+                        Err(e) => panic!("Error rendering rect: {}", e),
+                        _ => {}
+                    }
+                } else if cell.1.value == 2 {
+                    self.canvas.set_draw_color(RED);
                     match self.canvas.fill_rect(sdl2::rect::Rect::new(
                         (self.cell_width as i32) * (cell.0 as i32),
                         (self.cell_height as i32) * (row.0 as i32),
@@ -87,8 +98,19 @@ impl Renderer for Sdl2Renderer {
     fn render_grid(&mut self, grid: &Grid) {
         for row in grid.rows.iter().enumerate() {
             for cell in row.1.cells.iter().enumerate() {
-                if cell.1.value != 0 {
+                if cell.1.value == 1 {
                     self.canvas.set_draw_color(ORANGE);
+                    match self.canvas.fill_rect(sdl2::rect::Rect::new(
+                        (self.cell_width as i32) * (cell.0 as i32),
+                        (self.cell_height as i32) * (row.0 as i32),
+                        self.cell_width,
+                        self.cell_height,
+                    )) {
+                        Err(e) => panic!("Error rendering rect: {}", e),
+                        _ => {}
+                    }
+                } else if cell.1.value == 2 {
+                    self.canvas.set_draw_color(RED);
                     match self.canvas.fill_rect(sdl2::rect::Rect::new(
                         (self.cell_width as i32) * (cell.0 as i32),
                         (self.cell_height as i32) * (row.0 as i32),
