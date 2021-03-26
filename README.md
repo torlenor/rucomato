@@ -119,7 +119,7 @@ cargo run -- lant sdl2
 
 ![Langton's ant](./examples/langtons_ant.png)
 
-### [Brian's_Brain](https://en.wikipedia.org/wiki/Brian%27s_Brain)
+### [Brian's Brain](https://en.wikipedia.org/wiki/Brian%27s_Brain)
 
 On console:
 ```console
