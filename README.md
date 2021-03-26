@@ -119,11 +119,11 @@ cargo run -- lant sdl2
 
 ![Langton's ant](./examples/langtons_ant.png)
 
-
 ## TODO:
 
 ### General
 
+- [ ] More than two states that map to different colors/symbols
 - [ ] Mouse interaction for SDL2 to place/influence cells
 - [ ] Move into the third dimension
 - [ ] Sound synthesis
