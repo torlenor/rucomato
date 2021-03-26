@@ -29,6 +29,8 @@ mod lant;
 use lant::Lant;
 mod brians_brain;
 use brians_brain::BriansBrain;
+mod wireworld;
+use wireworld::Wireworld;
 
 mod cell;
 mod grid;
@@ -85,6 +87,10 @@ pub fn main() -> Result<(), String> {
         }
         "bb" => {
             automaton = Box::new(BriansBrain::new(ROWS, COLS));
+            grid = true;
+        }
+        "wireworld" => {
+            automaton = Box::new(Wireworld::new(ROWS, COLS));
             grid = true;
         }
         _ => panic!("Unknown automaton {} selected.", automaton_select),

@@ -8,12 +8,14 @@ use crate::grid::Grid;
 use crate::renderer::Renderer;
 use crate::row::Row;
 use crate::events;
+use crate::cell::Cell;
 
 #[allow(dead_code)]
-const WHITE: sdl2::pixels::Color = Color::RGB(255, 255, 255);
 const BLACK: sdl2::pixels::Color = Color::RGB(0, 0, 0);
-const RED: sdl2::pixels::Color = Color::RGB(255, 128, 128);
+const WHITE: sdl2::pixels::Color = Color::RGB(255, 255, 255);
+const RED: sdl2::pixels::Color = Color::RGB(255, 0, 0);
 const ORANGE: sdl2::pixels::Color = Color::RGB(253, 166, 47);
+const BLUE: sdl2::pixels::Color = Color::RGB(0, 0, 255);
 
 pub struct Sdl2Renderer {
     rows: usize,
@@ -59,6 +61,43 @@ impl Sdl2Renderer {
             previous_rows: Vec::new(),
         })
     }
+
+    fn render_cell(&mut self, cell: Cell, col: usize, row: usize) {
+        if cell.value == 1 {
+            self.canvas.set_draw_color(BLUE);
+            match self.canvas.fill_rect(sdl2::rect::Rect::new(
+                (self.cell_width as i32) * (col as i32),
+                (self.cell_height as i32) * (row as i32),
+                self.cell_width,
+                self.cell_height,
+            )) {
+                Err(e) => panic!("Error rendering rect: {}", e),
+                _ => {}
+            }
+        } else if cell.value == 2 {
+            self.canvas.set_draw_color(RED);
+            match self.canvas.fill_rect(sdl2::rect::Rect::new(
+                (self.cell_width as i32) * (col as i32),
+                (self.cell_height as i32) * (row as i32),
+                self.cell_width,
+                self.cell_height,
+            )) {
+                Err(e) => panic!("Error rendering rect: {}", e),
+                _ => {}
+            }
+        } else if cell.value == 3 {
+            self.canvas.set_draw_color(ORANGE);
+            match self.canvas.fill_rect(sdl2::rect::Rect::new(
+                (self.cell_width as i32) * (col as i32),
+                (self.cell_height as i32) * (row as i32),
+                self.cell_width,
+                self.cell_height,
+            )) {
+                Err(e) => panic!("Error rendering rect: {}", e),
+                _ => {}
+            }
+        }
+    } 
 }
 
 impl Renderer for Sdl2Renderer {
@@ -67,60 +106,16 @@ impl Renderer for Sdl2Renderer {
         if self.previous_rows.len() >= self.rows {
             self.previous_rows.remove(0);
         }
-        for row in self.previous_rows.iter().enumerate() {
-            for cell in row.1.cells.iter().enumerate() {
-                if cell.1.value == 1 {
-                    self.canvas.set_draw_color(ORANGE);
-                    match self.canvas.fill_rect(sdl2::rect::Rect::new(
-                        (self.cell_width as i32) * (cell.0 as i32),
-                        (self.cell_height as i32) * (row.0 as i32),
-                        self.cell_width,
-                        self.cell_height,
-                    )) {
-                        Err(e) => panic!("Error rendering rect: {}", e),
-                        _ => {}
-                    }
-                } else if cell.1.value == 2 {
-                    self.canvas.set_draw_color(RED);
-                    match self.canvas.fill_rect(sdl2::rect::Rect::new(
-                        (self.cell_width as i32) * (cell.0 as i32),
-                        (self.cell_height as i32) * (row.0 as i32),
-                        self.cell_width,
-                        self.cell_height,
-                    )) {
-                        Err(e) => panic!("Error rendering rect: {}", e),
-                        _ => {}
-                    }
-                }
+        for row in 0..self.previous_rows.len() {
+            for col in 0..self.previous_rows[row].cells.len() {
+                self.render_cell(self.previous_rows[row].cells[col], col, row);
             }
         }
     }
     fn render_grid(&mut self, grid: &Grid) {
         for row in grid.rows.iter().enumerate() {
             for cell in row.1.cells.iter().enumerate() {
-                if cell.1.value == 1 {
-                    self.canvas.set_draw_color(ORANGE);
-                    match self.canvas.fill_rect(sdl2::rect::Rect::new(
-                        (self.cell_width as i32) * (cell.0 as i32),
-                        (self.cell_height as i32) * (row.0 as i32),
-                        self.cell_width,
-                        self.cell_height,
-                    )) {
-                        Err(e) => panic!("Error rendering rect: {}", e),
-                        _ => {}
-                    }
-                } else if cell.1.value == 2 {
-                    self.canvas.set_draw_color(RED);
-                    match self.canvas.fill_rect(sdl2::rect::Rect::new(
-                        (self.cell_width as i32) * (cell.0 as i32),
-                        (self.cell_height as i32) * (row.0 as i32),
-                        self.cell_width,
-                        self.cell_height,
-                    )) {
-                        Err(e) => panic!("Error rendering rect: {}", e),
-                        _ => {}
-                    }
-                }
+                self.render_cell(*cell.1, cell.0, row.0);
             }
         }
     }

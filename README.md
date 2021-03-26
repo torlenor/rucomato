@@ -133,6 +133,20 @@ cargo run -- bb sdl2
 
 ![Brian's Brain](./examples/brians_brain.png)
 
+### [Wireworld](https://en.wikipedia.org/wiki/Wireworld)
+
+On console:
+```console
+cargo run -- wireworld console
+```
+
+In SDL2 window:
+```console
+cargo run -- wireworld sdl2
+```
+
+![Wireworld](./examples/wireworld.png)
+
 ## TODO:
 
 ### General
@@ -153,4 +167,3 @@ Possible other interesting automata to implement in no particular order:
 - [ ] [CoDi](https://en.wikipedia.org/wiki/CoDi)
 - [ ] [Langton's loops](https://en.wikipedia.org/wiki/Langton%27s_loops)
 - [ ] [Nobili cellular automata](https://en.wikipedia.org/wiki/Nobili_cellular_automata)
-- [ ] [Wireworld](https://en.wikipedia.org/wiki/Wireworld)
